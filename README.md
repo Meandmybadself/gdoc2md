@@ -65,11 +65,22 @@ Before using `gdoc2md`, you need to create a Google Cloud project with OAuth cre
    - Search for `Google Docs API` and check `.../auth/documents.readonly`
    - Click **Update**, then **Save and Continue**
 6. On the **Test users** page, click **Add Users**
-   - Add your own Google email address (this is required while the app is in "Testing" status)
+   - Add the Google email address of every person who will use this tool
+   - You can add up to 100 test users
    - Click **Save and Continue**
 7. Review and click **Back to Dashboard**
 
-> **Note:** While your app is in "Testing" status, only the test users you add can authorize it. This is fine for personal use. Publishing the app removes this restriction but requires Google verification.
+#### About Test Users
+
+When your app is in **"Testing"** publishing status (the default), Google restricts access to only the accounts you explicitly add as test users. This is important to understand:
+
+- **Every person** who needs to run `gdoc2md` must have their Google account added as a test user in the consent screen configuration
+- If someone tries to authorize without being listed, they will see an error like _"Access blocked: This app's request is invalid"_ or _"Error 403: access_denied"_
+- Test user tokens expire after **7 days**, so users will need to re-authorize periodically (delete `~/.gdoc2md/token.json` and run an export again)
+- You can add up to **100 test users**
+- To add more users later, go back to **APIs & Services > OAuth consent screen** and edit the test users list
+
+> **Note:** If you want to remove the test user restriction and token expiration, you can click **Publish App** on the OAuth consent screen. However, because `gdoc2md` uses a sensitive scope (`documents.readonly`), Google will require you to submit your app for verification, which involves a review process. For personal or small-team use, staying in "Testing" mode and managing the test user list is the simplest approach.
 
 ### 4. Create OAuth Credentials
 

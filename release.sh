@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export GOTOOLCHAIN=auto
 BINARY="gdoc2md"
 DIST="dist"
 
